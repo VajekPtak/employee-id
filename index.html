@@ -15,20 +15,20 @@
             object-fit: cover; z-index: -1; 
         }
         
-        /* Clock (Yellow Box) */
+        /* Clock (Yellow Box Position) */
         #clock {
             position: absolute;
             top: 10px;
             right: 20px;
             font-size: 20px;
             font-weight: bold;
-            color: black;
-            background: yellow;
+            color: white;
+            background: rgba(0, 0, 0, 0.5);
             padding: 5px 10px;
             border-radius: 5px;
         }
         
-        /* Name Input (Blue Box) */
+        /* Name Input (Blue Box Position) */
         #name-box {
             position: absolute;
             top: 50%;
@@ -37,25 +37,22 @@
             font-size: 20px;
             font-weight: bold;
             color: white;
-            background: blue;
-            padding: 5px 10px;
-            border-radius: 5px;
         }
         #name-input {
             font-size: 18px;
             padding: 5px;
         }
         
-        /* Photo (Red Box) */
+        /* Photo (Red Box Position) */
         #photo {
             position: absolute;
             top: 30%;
             left: 50%;
             transform: translateX(-50%);
-            width: 100px; /* Adjust to fit */
+            width: 100px;
             height: 120px;
-            border: 2px solid red;
             object-fit: cover;
+            border-radius: 5px;
         }
     </style>
 </head>
