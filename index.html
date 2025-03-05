@@ -60,6 +60,20 @@
             object-fit: cover;
             border-radius: 5px;
         }
+        
+        /* Fullscreen Button */
+        #fullscreen-btn {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            font-size: 16px;
+            padding: 10px 15px;
+            background: #333;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -84,6 +98,9 @@
     <input type="file" id="photo-upload" accept="image/*" onchange="loadPhoto(event)">
     <img id="photo" src="" alt="Your Photo">
     
+    <!-- Fullscreen Button -->
+    <button id="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen</button>
+    
     <script>
         // Clock Function
         function updateClock() {
@@ -103,6 +120,15 @@
         function loadPhoto(event) {
             let photo = document.getElementById("photo");
             photo.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        // Fullscreen Toggle Function
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen();
+            } else if (document.exitFullscreen) {
+                document.exitFullscreen();
+            }
         }
     </script>
 </body>
