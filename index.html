@@ -6,7 +6,7 @@
     <title>Employee ID</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
-        body { overflow: hidden; text-align: center; }
+        body { overflow: hidden; text-align: center; background: black; }
         
         /* Background Video */
         #video-container {
@@ -79,7 +79,7 @@
 <body>
     <!-- Background Video -->
     <div id="video-container">
-        <video id="video-bg" autoplay loop muted>
+        <video id="video-bg" autoplay loop muted playsinline>
             <source src="assets/background.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
@@ -124,12 +124,30 @@
 
         // Fullscreen Toggle Function
         function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen();
-            } else if (document.exitFullscreen) {
-                document.exitFullscreen();
+            let elem = document.documentElement;
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    elem.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                }
             }
         }
+
+        // Ensure Video Autoplays on iOS Safari
+        document.addEventListener('DOMContentLoaded', function () {
+            let video = document.getElementById('video-bg');
+            video.play().catch(() => {
+                video.muted = true;
+                video.play();
+            });
+        });
     </script>
 </body>
 </html>
