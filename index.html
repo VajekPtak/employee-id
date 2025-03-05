@@ -5,107 +5,100 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Employee ID</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; color: white; text-align: center; overflow: hidden; }
-
-        /* Background video */
-        #video-bg {
-            position: fixed;
-            top: 0; left: 0; width: 100vw; height: 100vh;
-            object-fit: cover;
-            z-index: -1;
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body { overflow: hidden; text-align: center; }
+        
+        /* Background Video */
+        #video-bg { 
+            position: fixed; 
+            top: 0; left: 0; width: 100vw; height: 100vh; 
+            object-fit: cover; z-index: -1; 
         }
-
-        /* Overlay content */
-        .content {
-            position: absolute;
-            top: 50%; left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-        }
-
-        /* Clock */
+        
+        /* Clock (Yellow Box) */
         #clock {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            background: rgba(0, 0, 0, 0.5);
-            padding: 10px 20px;
-            border-radius: 10px;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: black;
+            background: yellow;
+            padding: 5px 10px;
+            border-radius: 5px;
         }
-
-        /* Profile Photo */
+        
+        /* Name Input (Blue Box) */
+        #name-box {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            background: blue;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        #name-input {
+            font-size: 18px;
+            padding: 5px;
+        }
+        
+        /* Photo (Red Box) */
         #photo {
-            width: 150px; height: 150px;
-            border-radius: 50%;
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px; /* Adjust to fit */
+            height: 120px;
+            border: 2px solid red;
             object-fit: cover;
-            display: none;
-            margin-top: 20px;
-            border: 3px solid white;
         }
-
-        /* File input */
-        input { margin-top: 20px; }
     </style>
 </head>
 <body>
-
     <!-- Background Video -->
-    <video id="video-bg" autoplay loop muted playsinline>
-        <source src="assets/background.mp4" type="video/mp4">
+    <video id="video-bg" autoplay loop muted>
+        <source src="your-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-
-    <!-- Content Overlay -->
-    <div class="content">
-        <div id="clock"></div>
-        <input type="file" id="fileInput" accept="image/*">
-        <br>
-        <img id="photo" alt="Your ID Photo">
-        <br>
-        <button onclick="clearPhoto()">Remove Photo</button>
+    
+    <!-- Live Clock -->
+    <div id="clock"></div>
+    
+    <!-- Name Input Field -->
+    <div id="name-box">
+        <input type="text" id="name-input" placeholder="Enter your name" oninput="updateName()">
+        <div id="name-display"></div>
     </div>
-
+    
+    <!-- Profile Photo -->
+    <input type="file" id="photo-upload" accept="image/*" onchange="loadPhoto(event)">
+    <img id="photo" src="" alt="Your Photo">
+    
     <script>
-        const clock = document.getElementById('clock');
-        const fileInput = document.getElementById('fileInput');
-        const photo = document.getElementById('photo');
-
-        // Real-time clock
+        // Clock Function
         function updateClock() {
-            const now = new Date();
-            clock.innerText = now.toLocaleTimeString();
+            let now = new Date();
+            document.getElementById("clock").innerText = now.toLocaleString();
         }
         setInterval(updateClock, 1000);
-        updateClock(); // Initialize clock immediately
+        updateClock();
 
-        // Load stored photo if available
-        const savedPhoto = localStorage.getItem('employeePhoto');
-        if (savedPhoto) {
-            photo.src = savedPhoto;
-            photo.style.display = 'block';
+        // Name Update Function
+        function updateName() {
+            let name = document.getElementById("name-input").value;
+            document.getElementById("name-display").innerText = name;
         }
-
-        // Handle file upload
-        fileInput.addEventListener('change', (event) => {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = (e) => {
-                    localStorage.setItem('employeePhoto', e.target.result);
-                    photo.src = e.target.result;
-                    photo.style.display = 'block';
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Remove photo
-        function clearPhoto() {
-            localStorage.removeItem('employeePhoto');
-            photo.style.display = 'none';
-            fileInput.value = '';
+        
+        // Load User Photo
+        function loadPhoto(event) {
+            let photo = document.getElementById("photo");
+            photo.src = URL.createObjectURL(event.target.files[0]);
         }
     </script>
-
 </body>
 </html>
