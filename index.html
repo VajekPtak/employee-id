@@ -24,9 +24,9 @@
         /* Clock (Yellow Box Position) */
         #clock {
             position: absolute;
-            top: 40px;
+            top: 50px;
             right: 20px;
-            font-size: 18px;
+            font-size: 16px;
             font-weight: bold;
             color: white;
         }
@@ -48,6 +48,7 @@
             border: none;
             color: white;
             text-align: center;
+            font-weight: bold;
         }
         #name-input:focus {
             outline: none;
@@ -56,13 +57,13 @@
         /* Photo (Red Box Position) */
         #photo {
             position: absolute;
-            top: 30%;
+            top: 31%;
             left: 50%;
             transform: translateX(-50%);
-            width: 75px;
-            height: 90px;
+            width: 100px;
+            height: 120px;
             object-fit: cover;
-            border-radius: 5px;
+            border-radius: 0;
         }
         
         /* Fullscreen Button */
@@ -94,62 +95,4 @@
     
     <!-- Name Input Field -->
     <div id="name-box">
-        <input type="text" id="name-input" placeholder="Enter your name" oninput="updateName()">
-    </div>
-    
-    <!-- Profile Photo -->
-    <input type="file" id="photo-upload" accept="image/*" onchange="loadPhoto(event)">
-    <img id="photo" src="" alt="Your Photo">
-    
-    <!-- Fullscreen Button -->
-    <button id="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen</button>
-    
-    <script>
-        // Clock Function
-        function updateClock() {
-            let now = new Date();
-            document.getElementById("clock").innerText = now.toLocaleString();
-        }
-        setInterval(updateClock, 1000);
-        updateClock();
-
-        // Name Update Function
-        function updateName() {
-            let name = document.getElementById("name-input").value;
-        }
-        
-        // Load User Photo
-        function loadPhoto(event) {
-            let photo = document.getElementById("photo");
-            photo.src = URL.createObjectURL(event.target.files[0]);
-        }
-
-        // Fullscreen Toggle Function
-        function toggleFullscreen() {
-            let elem = document.documentElement;
-            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen();
-                } else if (elem.webkitRequestFullscreen) { /* Safari */
-                    elem.webkitRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) { /* Safari */
-                    document.webkitExitFullscreen();
-                }
-            }
-        }
-
-        // Ensure Video Autoplays on iOS Safari
-        document.addEventListener('DOMContentLoaded', function () {
-            let video = document.getElementById('video-bg');
-            video.play().catch(() => {
-                video.muted = true;
-                video.play();
-            });
-        });
-    </script>
-</body>
-</html>
+        <
