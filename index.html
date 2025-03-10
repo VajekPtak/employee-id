@@ -95,4 +95,62 @@
     
     <!-- Name Input Field -->
     <div id="name-box">
-        <
+        <input type="text" id="name-input" placeholder="Enter your name" oninput="updateName()">
+    </div>
+    
+    <!-- Profile Photo -->
+    <input type="file" id="photo-upload" accept="image/*" onchange="loadPhoto(event)">
+    <img id="photo" src="" alt="Your Photo">
+    
+    <!-- Fullscreen Button -->
+    <button id="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen</button>
+    
+    <script>
+        // Clock Function
+        function updateClock() {
+            let now = new Date();
+            document.getElementById("clock").innerText = now.toLocaleString();
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Name Update Function
+        function updateName() {
+            let name = document.getElementById("name-input").value;
+        }
+        
+        // Load User Photo
+        function loadPhoto(event) {
+            let photo = document.getElementById("photo");
+            photo.src = URL.createObjectURL(event.target.files[0]);
+        }
+
+        // Fullscreen Toggle Function
+        function toggleFullscreen() {
+            let elem = document.documentElement;
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (elem.requestFullscreen) {
+                    elem.requestFullscreen();
+                } else if (elem.webkitRequestFullscreen) { /* Safari */
+                    elem.webkitRequestFullscreen();
+                }
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) { /* Safari */
+                    document.webkitExitFullscreen();
+                }
+            }
+        }
+
+        // Ensure Video Autoplays on iOS Safari
+        document.addEventListener('DOMContentLoaded', function () {
+            let video = document.getElementById('video-bg');
+            video.play().catch(() => {
+                video.muted = true;
+                video.play();
+            });
+        });
+    </script>
+</body>
+</html>
