@@ -21,11 +21,11 @@
             object-fit: cover;
         }
         
-        /* Clock (moved 5% up, 2% right, font size unchanged) */
+        /* Clock (moved 3% down, slight right, font size unchanged) */
         #clock {
             position: absolute;
-            top: calc(43px + 3vh - 5vh);   /* moved 5% up */
-            right: calc(62px - 1vw + 2vw); /* moved 2% right */
+            top: calc(43px + 3vh - 5vh + 3vh);   /* original 43px+3vh, moved 5vh up then 3vh down */
+            right: calc(62px - 1vw + 2vw);       /* slight right */
             font-size: 15.2px;
             font-weight: bold;
             color: white;
@@ -34,7 +34,7 @@
         /* Name Input Field (slightly down, black text) */
         #name-box {
             position: absolute;
-            top: 47%;  /* unchanged from previous */
+            top: 47%;  
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 20px;
@@ -54,14 +54,14 @@
             outline: none;
         }
         
-        /* Photo (10% smaller, 15% up, slightly rounded corners) */
+        /* Photo (moved 7% down) */
         #photo {
             position: absolute;
-            top: calc(57mm + 10px - 15%);  /* moved 15% up */
+            top: calc(57mm + 10px - 15% + 7%);  /* previous top +7% */
             left: 50%;
             transform: translateX(-50%);
-            width: 119.7px;   /* 133px * 0.9 ≈ 119.7px */
-            height: 148.5px;  /* 165px * 0.9 ≈ 148.5px */
+            width: 119.7px;   /* unchanged size */
+            height: 148.5px;  /* unchanged size */
             object-fit: cover;
             border-radius: 8px;
         }
