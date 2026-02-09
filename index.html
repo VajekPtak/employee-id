@@ -21,12 +21,12 @@
             object-fit: cover;
         }
         
-        /* Clock (slightly up & right, font +15%) */
+        /* Clock (moved 5% up, 2% right, font size unchanged) */
         #clock {
             position: absolute;
-            top: calc(43px + 3vh);   /* slightly up compared to before */
-            right: calc(62px - 1vw); /* slightly right */
-            font-size: 15.2px;       /* 13.2px * 1.15 ≈ 15.2px */
+            top: calc(43px + 3vh - 5vh);   /* moved 5% up */
+            right: calc(62px - 1vw + 2vw); /* moved 2% right */
+            font-size: 15.2px;
             font-weight: bold;
             color: white;
         }
@@ -34,7 +34,7 @@
         /* Name Input Field (slightly down, black text) */
         #name-box {
             position: absolute;
-            top: 47%;  /* slightly down from 46% */
+            top: 47%;  /* unchanged from previous */
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 20px;
@@ -54,16 +54,16 @@
             outline: none;
         }
         
-        /* Photo (another 40% bigger + slightly rounded corners, moved slightly down) */
+        /* Photo (10% smaller, 15% up, slightly rounded corners) */
         #photo {
             position: absolute;
-            top: calc(57mm + 10px);  /* moved down a little more */
+            top: calc(57mm + 10px - 15%);  /* moved 15% up */
             left: 50%;
             transform: translateX(-50%);
-            width: 133px;   /* 95px * 1.4 ≈ 133px */
-            height: 165px;  /* 118px * 1.4 ≈ 165px */
+            width: 119.7px;   /* 133px * 0.9 ≈ 119.7px */
+            height: 148.5px;  /* 165px * 0.9 ≈ 148.5px */
             object-fit: cover;
-            border-radius: 8px; /* slightly rounded corners */
+            border-radius: 8px;
         }
 
         /* Optional: keep upload input visible */
