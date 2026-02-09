@@ -21,12 +21,12 @@
             object-fit: cover;
         }
         
-        /* Clock (moved 3% down, slight right, font size unchanged) */
+        /* Clock (move 1% up, 4% right, increase size 8%) */
         #clock {
             position: absolute;
-            top: calc(43px + 3vh - 5vh + 3vh);   /* original 43px+3vh, moved 5vh up then 3vh down */
-            right: calc(62px - 1vw + 2vw);       /* slight right */
-            font-size: 15.2px;
+            top: calc(43px + 3vh - 5vh + 3vh - 1vh);   /* previous top - 1% */
+            right: calc(62px - 1vw + 2vw + 4vw);       /* previous right + 4% */
+            font-size: 16.4px;                          /* 15.2px * 1.08 ≈ 16.4px */
             font-weight: bold;
             color: white;
         }
@@ -54,14 +54,14 @@
             outline: none;
         }
         
-        /* Photo (moved 7% down) */
+        /* Photo (increase 4% in size, move 10% down) */
         #photo {
             position: absolute;
-            top: calc(57mm + 10px - 15% + 7%);  /* previous top +7% */
+            top: calc(57mm + 10px - 15% + 7% + 10%);  /* previous top + 10% */
             left: 50%;
             transform: translateX(-50%);
-            width: 119.7px;   /* unchanged size */
-            height: 148.5px;  /* unchanged size */
+            width: 124.3px;   /* 119.7px * 1.04 ≈ 124.3px */
+            height: 154.4px;  /* 148.5px * 1.04 ≈ 154.4px */
             object-fit: cover;
             border-radius: 8px;
         }
