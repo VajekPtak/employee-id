@@ -21,20 +21,20 @@
             object-fit: cover;
         }
         
-        /* Clock (Yellow Box Position) */
+        /* Clock (Moved 4% down, 2% right, 10% bigger) */
         #clock {
             position: absolute;
-            top: 39px;
-            right: 64px;
-            font-size: 12px;
+            top: calc(39px + 4vh);
+            right: calc(64px - 2vw);
+            font-size: 13.2px; /* 10% increase from 12px */
             font-weight: bold;
             color: white;
         }
         
-        /* Name Input (Blue Box Position) */
+        /* Name Input Field (Moved slightly up) */
         #name-box {
             position: absolute;
-            top: 50%;
+            top: 46%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-size: 20px;
@@ -54,31 +54,26 @@
             outline: none;
         }
         
-        /* Photo (Red Box Position) */
+        /* Photo (40% bigger + moved slightly down) */
         #photo {
             position: absolute;
-            top: 47mm;
+            top: calc(47mm + 10px);
             left: 50%;
             transform: translateX(-50%);
-            width: 68px;
-            height: 84px;
+            width: 95px;   /* 68px * 1.4 = 95.2 */
+            height: 118px; /* 84px * 1.4 = 117.6 */
             object-fit: cover;
             border-radius: 0;
         }
-        
-        /* Fullscreen Button */
-        #fullscreen-btn {
+
+        /* Hide the default file input a bit nicer (optional) */
+        #photo-upload {
             position: absolute;
             bottom: 20px;
-            right: 20px;
-            font-size: 16px;
-            padding: 10px 15px;
-            background: #333;
+            left: 20px;
             color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
         }
+
     </style>
 </head>
 <body>
@@ -98,12 +93,9 @@
         <input type="text" id="name-input" placeholder="Enter your name" oninput="updateName()">
     </div>
     
-    <!-- Profile Photo -->
+    <!-- Profile Photo Upload -->
     <input type="file" id="photo-upload" accept="image/*" onchange="loadPhoto(event)">
     <img id="photo" src="" alt="Your Photo">
-    
-    <!-- Fullscreen Button -->
-    <button id="fullscreen-btn" onclick="toggleFullscreen()">Fullscreen</button>
     
     <script>
         // Clock Function
@@ -125,24 +117,6 @@
             photo.src = URL.createObjectURL(event.target.files[0]);
         }
 
-        // Fullscreen Toggle Function
-        function toggleFullscreen() {
-            let elem = document.documentElement;
-            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
-                if (elem.requestFullscreen) {
-                    elem.requestFullscreen();
-                } else if (elem.webkitRequestFullscreen) { /* Safari */
-                    elem.webkitRequestFullscreen();
-                }
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                } else if (document.webkitExitFullscreen) { /* Safari */
-                    document.webkitExitFullscreen();
-                }
-            }
-        }
-
         // Ensure Video Autoplays on iOS Safari
         document.addEventListener('DOMContentLoaded', function () {
             let video = document.getElementById('video-bg');
@@ -154,4 +128,3 @@
     </script>
 </body>
 </html>
-
